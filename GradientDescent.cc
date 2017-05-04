@@ -40,8 +40,7 @@ void GradientDescent::displayData() {
 }
 
 
-void gradDesc(float* m, float* b, float learningRate) {
-
+void GradientDescent::gradDesc(float* m, float* b, float learningRate) {
 	float gradM = 0; // gradient of M to be accumulated
 	float gradB = 0; // gradient of B to be accumulated
 
@@ -52,21 +51,26 @@ void gradDesc(float* m, float* b, float learningRate) {
 	// iterating over the dataset and grabbing values of x and y and calculating
 	// the partial derivative of the cost function with respect to the m and then
 	// with respect with b
-	
+
 	for (int i = 0; i < points.size(); ++i) {
 		// assigning the x and y values from the multidimentional array
 		x = points[i][0];
 		y = points[i][1];
 
-		gradM += -1 * (x * (y - ((m * x) + b));
-		gradB += -1 * (y - ((m * x) + b)));
+		gradM += -(x * (y - ((*m * x) + *b)));
+		gradB += -(y - ((*m * x) + *b));
 	}
 
-	gradM *= gradM * (2 / points.size());
+	// type casting an int to a float for the size which is n in the formula
+	float n = static_cast<float>(points.size());
 
-	gradB *= gradB * (2 / points.size());
+	// averaging the gradient
+	gradM = gradM * (2.0 / n);
+	gradB = gradB * (2.0 / n);
 
-
+	// learning the new m and b value
+	*m = *m - (gradM * learningRate);
+	*b = *b - (gradB * learningRate);
 }
 
 void GradientDescent::batchTrain(float* m, float* b, float learningRate) {
@@ -79,4 +83,5 @@ void GradientDescent::batchTrain(float* m, float* b, float learningRate) {
 
 	*m = rM;
 	*b = rB;
+
 }

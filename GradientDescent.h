@@ -12,8 +12,10 @@ class GradientDescent {
 	public:
 		void generateData(string);
 		void displayData();
+		void batchTrain(float*, float*, float); // takes in a m and b value and the learning rate
 
 	private:
+		void gradDesc(float*, float*, float); // takes in a m and b value and the learning rate 
 		vector<vector<float>> points;
 
 };

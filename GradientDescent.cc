@@ -1,5 +1,7 @@
 #include "GradientDescent.h"
 
+// reads the csv file and stores it in the vector containing a vector of array with two elements
+// first element being the value of y axis for a specific point and second being the x axis for a specific point
 void GradientDescent::generateData(string fileName) {
 	ifstream file; // ifstream object declared
 	file.open(fileName); // file pointer pointing to the file
@@ -28,6 +30,7 @@ void GradientDescent::generateData(string fileName) {
 	file.close(); // close the file that was opened
 }
 
+// just a member function to display the data
 void GradientDescent::displayData() {
 	for (int i = 0; i < points.size(); ++i) {
 		for (int j = 0; j < points[i].size(); ++j) {
@@ -39,7 +42,7 @@ void GradientDescent::displayData() {
 	}
 }
 
-
+// goes through one iteration and applies gradient descent
 void GradientDescent::gradDesc(float* m, float* b, float learningRate) {
 	float gradM = 0; // gradient of M to be accumulated
 	float gradB = 0; // gradient of B to be accumulated
@@ -69,16 +72,30 @@ void GradientDescent::gradDesc(float* m, float* b, float learningRate) {
 	gradB = gradB * (2.0 / n);
 
 	// learning the new m and b value
+	// changes the value of m and b depending on the gradient of cost function with respect to M and B
 	*m = *m - (gradM * learningRate);
 	*b = *b - (gradB * learningRate);
 }
 
+// function that iterates the dataset a certain number of times and does gradient descent
 void GradientDescent::batchTrain(float* m, float* b, float learningRate) {
 
 	float rM = 0; // value to change starts at 0
 	float rB = 0; // value to change starts at 0
 
-	for (int i = 0; i < 10000; ++i)
+	// Explicitly deciding how many times that one data set will be iterated
+	// this is the key part of gradient descent, each iteration changes the value
+	// of m and b, this change improves the m and b over each iteartions every time.
+	// as gradDesc function finds the derivative of the cost function in terms of 
+	// m and then b. For each points in the dataset the gradient is found and added and then by using
+	// the formula new_m = m - (gradient_of_m * learning_rate), we find the new m and b as well similarly.
+	
+	// gradient descent needs to happen multiple times, as we are getting better and better at
+	// plotting the line to best fit our dataset, hence we do gradient descent 100000 amount of timess
+
+	int iteration_of_same_data_set = 10000;
+
+	for (int i = 0; i < iteration_of_same_data_set; ++i)
 		gradDesc(&rM, &rB, learningRate);
 
 	*m = rM;

@@ -85,13 +85,13 @@ void GradientDescent::batchTrain(float* m, float* b, float learningRate) {
 
 	// Explicitly deciding how many times that one data set will be iterated
 	// this is the key part of gradient descent, each iteration changes the value
-	// of m and b, this change improves the m and b over each iteartions every time.
+	// of m and b, this change improves the m and b over each iterations every time.
 	// as gradDesc function finds the derivative of the cost function in terms of 
 	// m and then b. For each points in the dataset the gradient is found and added and then by using
 	// the formula new_m = m - (gradient_of_m * learning_rate), we find the new m and b as well similarly.
 	
 	// gradient descent needs to happen multiple times, as we are getting better and better at
-	// plotting the line to best fit our dataset, hence we do gradient descent 100000 amount of timess
+	// plotting the line to best fit our dataset, hence we do gradient descent 100000 amount of times
 
 	int iteration_of_same_data_set = 10000;
 

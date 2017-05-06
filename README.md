@@ -8,12 +8,14 @@ The two differential equations above is the partial derivation of the cost funct
 
 
 ![without-linear-line](https://cloud.githubusercontent.com/assets/25164326/25768997/52dfddac-31dd-11e7-8d3b-067b53e07da6.png)
-                                                   # Figure-1
+
+# Figure-1
 
 The graph diagram above in Figure-1 shows the plots of the x and y values from the data.csv file. Our goal is to find the line of best fit using gradient descent, a line that can go straight through the curve which would find a relationship between the x and the y values.
 
 
 ![with-linear-line](https://cloud.githubusercontent.com/assets/25164326/25768994/50d31b0a-31dd-11e7-9a19-b3f840de1bf4.png)
-                                                   # Figure-2
+
+# Figure-2
                                    
 The graph diagram above shows a linear line going through the data points, showing us what we want to achieve!
